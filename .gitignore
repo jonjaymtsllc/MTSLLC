@@ -22,3 +22,6 @@ Desktop.ini
 # Environment files (never commit secrets)
 .env
 .env.*
+
+# Local reference docs (not part of the website)
+*.docx
