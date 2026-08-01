@@ -25,21 +25,35 @@ every edit is "open a file in Notepad (or any text editor), find the text, chang
 Only the pages, `css/`, and `js/` matter to the live site. `Edit Website.bat`,
 `tools/`, and `_backups/` are just for editing on your own computer.
 
-## How to launch it (drag and drop, no build step)
+## How publishing works (automatic — no dragging)
 
-**Netlify (recommended — the forms work automatically here):**
-1. Go to https://app.netlify.com and sign up (free).
-2. On your dashboard, find the deploy area ("Add new site" → "Deploy manually").
-3. Drag this entire `MTS Website` folder onto the page. Done — you get a live URL.
-4. Form submissions appear under **Site → Forms** in Netlify. Turn on email
-   notifications there so submissions land in your inbox.
+This site is already live and deploys itself. There is nothing to drag anywhere.
 
-**Vercel:** also works (sign up at https://vercel.com and drag the folder into a new
-project), but Vercel doesn't collect form submissions — see "Wiring up the forms" below.
+- **Live site:** https://www.mooretutoringsolutions.com
+- **Code lives at:** https://github.com/jonjaymtsllc/MTSLLC
+- **Hosted by:** Vercel, project `mts-website`
 
-**Your Squarespace domain:** once you're happy with the live site, in Netlify go to
-**Domain settings → Add a domain** and follow their instructions; they'll tell you
-exactly what to change at Squarespace. Nothing in this folder needs to change for that.
+The chain is: you edit a file in this folder → you commit and push it with
+GitHub Desktop → Vercel notices the push and publishes it, usually within a
+minute. No build step, because these are plain HTML files.
+
+**To publish a change:**
+1. Make your edit and save it (see "Editing any text on the site" below).
+2. Open **GitHub Desktop**. Your changed files appear in the left panel.
+3. Type a short note in the **Summary** box, like `updated pricing`.
+4. Click **Commit to main**, then click **Push origin**.
+5. Wait about a minute, then reload the live site.
+
+If a change does not appear, check https://vercel.com/moore-tutoring-solutions-llc/mts-website/deployments —
+the newest entry should say **Ready**. If it says **Error**, click it to see why.
+
+**Your domain is already connected.** `mooretutoringsolutions.com` redirects to
+`www.mooretutoringsolutions.com`, and the DNS at Squarespace is set correctly.
+Nothing in this folder affects that.
+
+**Note on forms:** Vercel does not collect form submissions the way Netlify does.
+The booking form uses FormSubmit and the contact form needs Formspree — see
+"Wiring up the forms" below.
 
 ## Editing any text on the site (no code needed)
 
@@ -55,13 +69,13 @@ browser opens the site with **editing mode** already switched on.
    rename, or drag. A green "Saved index.html" line appears in the black window.
 4. To edit a different page, click through the menu as normal — editing mode
    stays on as you move around the site.
-5. When you're done, close the black window. Drag the folder to Netlify to
-   publish the changes.
+5. When you're done, close the black window. Then commit and push in GitHub
+   Desktop to publish the changes (see "How publishing works" above).
 
 Every save keeps a copy of the previous version in a `_backups` folder, named with
 the date and time, so you can always go back. Only the 30 most recent are kept.
-You can delete that folder any time — and it's worth deleting before you drag the
-folder to Netlify, so old versions don't get published.
+You can delete that folder any time. It is listed in `.gitignore`, so it never
+gets published to the live site or to the public GitHub repo.
 
 ### If you'd rather not use the launcher
 
@@ -161,7 +175,7 @@ To make them live (no code, all in the Stripe dashboard):
 4. Each link looks like `https://buy.stripe.com/xxxx`. In `programs.html`, find the
    three comments that say `EDIT: replace # with this package's Stripe Payment Link`
    and paste each link in place of the `#` on the line below it.
-5. Re-deploy the folder. Done — Stripe hosts the checkout page, handles cards,
+5. Commit and push in GitHub Desktop. Done — Stripe hosts the checkout page, handles cards,
    Apple Pay, and receipts, and deposits to your bank.
 
 **Invoicing** (for custom quotes after a consultation — since your prices are
@@ -194,7 +208,7 @@ with the subject "Tutor application").
    and paste the iframe in place of the placeholder box, exactly as the comment
    describes. Set the iframe's `width="100%"` and a height tall enough for the
    whole form (try `height="1400"`).
-4. Re-deploy the folder.
+4. Commit and push in GitHub Desktop.
 
 A note on the pay claim: the page says tutors earn **"about double what the
 typical college job pays."** We deliberately didn't cite LinkedIn — LinkedIn
