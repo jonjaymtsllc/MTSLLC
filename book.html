@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Free Consultation — Moore Tutoring Solutions</title>
+  <meta name="description" content="Book a free consultation with Moore Tutoring Solutions. Tell us about your student and we'll map out a plan for their ACT score or math grade — no pressure, no obligation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Calendly scheduler - powers every Book a Consultation button -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Crect width='44' height='44' rx='8' fill='%232b4ee6'/%3E%3Cpath d='M8 32 15.5 12 22 26 28.5 12 36 32' fill='none' stroke='%23fff' stroke-width='4' stroke-linejoin='miter' stroke-linecap='square'/%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">
+        <svg class="brand__mark" width="34" height="27" viewBox="0 0 44 34" aria-hidden="true"><path d="M4 31 13.5 5 22 23.5 30.5 5 40 31" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+        <span>Moore Tutoring Solutions</span>
+      </a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+        <span class="nav-toggle__bars"></span>
+      </button>
+      <nav class="nav__menu" id="site-menu" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html">Home</a></li>
+          <li><a class="nav__link" href="programs.html">Programs</a></li>
+          <li><a class="nav__link" href="results.html">Results</a></li>
+          <li><a class="nav__link" href="about.html">About</a></li>
+          <li><a class="nav__link" href="faq.html">FAQ</a></li>
+          <li><a class="nav__link" href="contact.html">Contact</a></li>
+          <li class="nav__cta"><a class="btn btn--primary" href="https://calendly.com/jonjay-mooretutoringsolutions/30min" data-calendly target="_blank" rel="noopener">Book a Consultation</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero">
+      <div class="wrap">
+        <p class="eyebrow">Book a consultation</p>
+        <h1>One conversation. <span class="mark">A real plan.</span></h1>
+        <p class="lead">Send us your details and we'll call you, or book a time on the calendar right now. Either way it's free, there's no obligation, and you leave with a plan.</p>
+      </div>
+    </section>
+
+    <!-- ============ FORM + SCHEDULER ============ -->
+    <section class="section">
+      <div class="wrap split">
+
+        <div>
+          <div class="form-card">
+            <h2 style="font-size:1.4rem">Have us call you</h2>
+            <p style="margin-bottom:1.3rem">Tell us about your student and this lands straight in our founder's inbox — we call you back, usually the same day.</p>
+            <!-- ==============================================================
+                 THIS FORM EMAILS YOU AUTOMATICALLY via formsubmit.co (free,
+                 no account needed). ONE-TIME SETUP: submit the form once
+                 yourself, then click the "Activate" button in the email
+                 FormSubmit sends to jonjay@mooretutoringsolutions.com.
+                 After that, every request arrives in your inbox instantly.
+                 ============================================================== -->
+            <form data-mts-email name="consultation" method="POST" action="https://formsubmit.co/jonjay@mooretutoringsolutions.com">
+              <input type="hidden" name="_subject" value="New consultation request — call this parent">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://mooretutoringsolutions.com/book.html">
+              <p style="display:none"><label>Don't fill this out: <input name="_honey"></label></p>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label for="b-name">Your name <span class="req" aria-hidden="true">*</span></label>
+                  <input id="b-name" name="name" type="text" autocomplete="name" required>
+                </div>
+                <div class="form-field">
+                  <label for="b-grade">Student's grade <span class="req" aria-hidden="true">*</span></label>
+                  <select id="b-grade" name="student-grade" required>
+                    <option value="" selected disabled>Select a grade</option>
+                    <option>8th grade</option>
+                    <option>9th grade (Freshman)</option>
+                    <option>10th grade (Sophomore)</option>
+                    <option>11th grade (Junior)</option>
+                    <option>12th grade (Senior)</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="b-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+                  <input id="b-phone" name="phone" type="tel" autocomplete="tel" required>
+                </div>
+                <div class="form-field">
+                  <label for="b-email">Email <span class="req" aria-hidden="true">*</span></label>
+                  <input id="b-email" name="email" type="email" autocomplete="email" required>
+                </div>
+                <div class="form-field form-field--full">
+                  <label for="b-message">What's going on with school or the ACT? <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="b-message" name="message" required placeholder="Example: My daughter is a junior scoring around 23 on ACT practice tests and wants a 28 by spring. Math is the weak section."></textarea>
+                </div>
+                <div class="form-field form-field--full">
+                  <button class="btn btn--primary btn--lg" type="submit" style="width:100%">Request My Free Consultation</button>
+                </div>
+              </div>
+              <p class="form-note">We'll only use this to schedule and prepare for your call. No spam, no sharing your info — ever.</p>
+            </form>
+            <div class="form-success" role="status">
+              <strong>Request received — thank you!</strong> Your details are on their way to our founder, and we'll call you soon. Want to lock in a time yourself? Grab a slot on the calendar.
+            </div>
+            <div class="form-error" role="alert">
+              <strong>Hmm — that didn't go through.</strong> Please call <a href="tel:+18595761816">(859) 576-1816</a> or email <a href="mailto:jonjay@mooretutoringsolutions.com">jonjay@mooretutoringsolutions.com</a> and we'll take it from there.
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="form-card">
+            <h2 style="font-size:1.4rem">Or book your time now</h2>
+            <p style="margin-bottom:1.3rem">Pick any open slot and it's on the calendar — you'll get a confirmation email with the call details right away.</p>
+            <!-- ==============================================================
+                 CALENDLY SCHEDULER
+                 To book a different meeting type, paste the new Calendly
+                 address into data-url below (Calendly > Share > Embed), then
+                 find-and-replace the old address across the other .html files
+                 so every button matches.
+                 ============================================================== -->
+            <div class="calendly-inline-widget"
+                 data-url="https://calendly.com/jonjay-mooretutoringsolutions/30min"
+                 style="min-width:280px;height:640px"></div>
+            <noscript>
+              <p>Scheduling needs JavaScript turned on.
+                <a href="https://calendly.com/jonjay-mooretutoringsolutions/30min">Open the calendar in a new tab</a>
+                or call <a href="tel:+18595761816">(859) 576-1816</a>.</p>
+            </noscript>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ WHAT HAPPENS NEXT ============ -->
+    <section class="section">
+      <div class="wrap split">
+
+        <div>
+          <p class="eyebrow">What happens next</p>
+          <h2>No pressure, just clarity</h2>
+          <ul class="check-rows">
+            <li class="reveal">
+              <span class="dot" aria-hidden="true">01</span>
+              <div>
+                <strong>You reach out</strong>
+                <p>Book a slot on the calendar, or send the form and we'll call you back — usually the same day.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="dot" aria-hidden="true">02</span>
+              <div>
+                <strong>A real conversation with our founder</strong>
+                <p>We talk through your student's scores, goals, and timeline — set aside up to 45 minutes so nothing gets rushed. Parents and students both welcome on the call.</p>
+              </div>
+            </li>
+            <li class="reveal">
+              <span class="dot" aria-hidden="true">03</span>
+              <div>
+                <strong>A recommendation and a start date</strong>
+                <p>The call ends with the smallest program that gets your student to their goal, and a date to begin. Lesson one opens with a full timed diagnostic — one ACT math section, under an hour — and we adjust the plan if it shows something different.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="card">
+            <h3 style="margin-top:0">Prefer to just talk?</h3>
+            <p style="margin-bottom:0.4rem">Email us at <a href="mailto:jonjay@mooretutoringsolutions.com">jonjay@mooretutoringsolutions.com</a></p>
+            <p style="margin-bottom:0">Or call <a href="tel:+18595761816">(859) 576-1816</a></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <svg class="brand__mark" width="34" height="27" viewBox="0 0 44 34" aria-hidden="true"><path d="M4 31 13.5 5 22 23.5 30.5 5 40 31" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+            <span>Moore Tutoring Solutions</span>
+          </a>
+          <p class="footer-tagline">Outcome-based ACT prep and high school math programs for students who need their scores to move — and parents who want to see it happen.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="programs.html">Programs</a></li>
+            <li><a href="results.html">Results</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="https://calendly.com/jonjay-mooretutoringsolutions/30min" data-calendly target="_blank" rel="noopener">Book a Consultation</a></li>
+            <li><a href="apply.html">Apply to Tutor</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:jonjay@mooretutoringsolutions.com">jonjay@mooretutoringsolutions.com</a></li>
+            <li><a href="tel:+18595761816">(859) 576-1816</a></li>
+            <li><a href="contact.html">Contact page</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Moore Tutoring Solutions LLC. All rights reserved.</span>
+        <span>Built to raise scores.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="js/main.js"></script>
+  <script src="js/editor.js"></script>
+</body>
+</html>

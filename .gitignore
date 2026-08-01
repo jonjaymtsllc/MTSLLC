@@ -1,0 +1,24 @@
+# Local backups (not for the public repo)
+_backups/
+
+# Local helper scripts
+*.bat
+
+# OS junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Editor junk
+.vscode/
+.idea/
+*.swp
+*~
+
+# Vercel
+.vercel
+
+# Environment files (never commit secrets)
+.env
+.env.*
