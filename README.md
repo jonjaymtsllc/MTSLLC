@@ -167,33 +167,55 @@ Calendly in a new tab instead of a popup.
 
 ## Getting paid (Stripe)
 
-Each package card on `programs.html` now has a **"Purchase This Package"** button.
-The buttons are placeholders until you connect them to Stripe — clicking one just
-shows a polite "coming soon" message, so it's safe to deploy as-is.
+**These buttons are live and take real money.** Every pay button on
+`programs.html` points at a real Stripe Payment Link on your live account
+(Moore Tutoring Solutions LLC). A parent who clicks one is charged.
 
-To make them live (no code, all in the Stripe dashboard):
+Five buttons, five links:
 
-1. Create your account at https://stripe.com and finish business verification
-   (you'll enter your LLC details and bank account — takes a few minutes, payouts
-   unlock once Stripe approves).
-2. In the dashboard, go to **Product catalog → Add product** and create one product
-   per package: The Minimum Package (recurring, monthly), The Score Builder
-   (one-time), The Premium Package (one-time).
-3. Go to **Payment Links → New** (or click "Create payment link" right on the
-   product) and make one link per package. This is where you can also turn on
-   **"Allow customers to pay in installments/subscriptions"** for the payment-plan
-   option the site already advertises.
-4. Each link looks like `https://buy.stripe.com/xxxx`. In `programs.html`, find the
-   three comments that say `EDIT: replace # with this package's Stripe Payment Link`
-   and paste each link in place of the `#` on the line below it.
-5. Commit and push in GitHub Desktop. Done — Stripe hosts the checkout page, handles cards,
-   Apple Pay, and receipts, and deposits to your bank.
+| Card | Button | Charge | Stripe product |
+|---|---|---|---|
+| Minimum | Purchase This Package | $149 every 4 weeks | The Minimum Package |
+| Score Builder | Pay Monthly | $999 every 4 weeks | The Score Builder (Monthly) |
+| Score Builder | Pay Up Front — Save $248 | $2,749 once | The Score Builder (Up Front) |
+| Premium | Pay Monthly | $1,749 every 4 weeks | The Premium Package (Monthly) |
+| Premium | Pay Up Front — Save $498 | $4,749 once | The Premium Package (Up Front) |
 
-**Invoicing** (for custom quotes after a consultation — since your prices are
-ranges, this may be your main tool): in the dashboard go to **Invoices → Create
-invoice**, enter the parent's email and the agreed amount, and send. They pay
-online, Stripe chases late payments for you, and you can set up payment plans
-per-invoice. No website changes needed.
+The buttons deliberately don't repeat the price — it's already in the card above
+them. The "Save" figures are the difference between paying up front and making
+three monthly payments (3 × $999 − $2,749 = $248; 3 × $1,749 − $4,749 = $498).
+**If you change any price, recheck that math.**
+
+Each checkout collects the payer's email, phone, and **the student's full name**,
+then shows a thank-you message saying you'll email within one business day.
+
+### Two things to watch
+
+**1. The monthly plans never stop on their own.** Stripe Payment Links can't be
+told "bill 3 times and quit." The Score Builder and Premium are 12-week programs,
+so after the **third** payment you have to cancel the subscription yourself:
+Stripe dashboard → **Subscriptions** → find the customer → **Cancel subscription**.
+Put a reminder on your calendar when someone signs up. If you forget, they get
+billed a fourth time and you'll owe a refund. (The Minimum Package is meant to run
+continuously, so it's fine to leave alone until the family cancels.)
+
+**2. "Per month" actually means every 4 weeks.** That's how the prices were set up
+in Stripe. Four weeks isn't a calendar month, so a year-long Minimum Package
+subscriber pays 13 times, not 12. For the 12-week programs it works out perfectly
+(3 payments = 12 weeks). If you'd rather bill on true calendar months, change the
+price in Stripe and tell me — the site wording may need to change with it.
+
+### Changing a price
+
+Change it in **both places** or a parent gets charged something different from
+what the page promised: edit the price in the Stripe dashboard, then edit the
+matching number in `programs.html`. Note that Stripe prices can't be edited in
+place — you create a new price and point the Payment Link at it.
+
+**Invoicing** (for custom quotes after a consultation): in the dashboard go to
+**Invoices → Create invoice**, enter the parent's email and the agreed amount, and
+send. They pay online, Stripe chases late payments for you, and you can set up
+payment plans per-invoice. No website changes needed.
 
 Never paste Stripe **API keys** (they start with `sk_` or `pk_`) into the website
 files — this site doesn't need them, and anything in these files is public.
