@@ -849,6 +849,55 @@ ol {
   margin-top: 0.65rem;
 }
 
+/* ---------- Proof points ("What an ACT score is actually worth") ----------
+   Rendered by js/proofSection.js from the data in js/proofPoints.js —
+   edit the numbers there, never here or in the HTML. */
+.proof-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.proof-card__num {
+  font-family: var(--font-mono);
+  font-size: clamp(1.9rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--cobalt);
+  line-height: 1.15;
+  margin: 0 0 0.8rem;
+}
+
+.proof-card__detail {
+  color: var(--ink-soft);
+  font-size: 0.97rem;
+  flex: 1;
+}
+
+/* Visible source citation pinned to the bottom of each card.
+   --ink-faint on the white card passes WCAG AA (4.7:1). */
+.proof-card__source {
+  margin: 0.4rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--line);
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* Verification line under the cards. Uses --ink-soft rather than the
+   usual --ink-faint because ink-faint only reaches 4.4:1 on the paper
+   background — below WCAG AA for small text. */
+.proof-foot {
+  margin: 1.8rem 0 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.proof-cta {
+  margin: 1.4rem 0 0;
+  text-align: center;
+}
+
 /* ---------- Testimonials ---------- */
 .quote-card {
   background: var(--paper-raised);

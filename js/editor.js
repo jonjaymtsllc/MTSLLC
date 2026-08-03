@@ -53,6 +53,9 @@
       var el = all[i];
       if (SKIP[el.tagName] || el instanceof SVGElement) continue;
       if (el.closest(".mts-editor-bar")) continue;
+      // The research-stats section is drawn from js/proofPoints.js on every
+      // page load, so click-edits here would be lost — edit that file instead.
+      if (el.closest("[data-proof-points]")) continue;
       // Skip if an ancestor is already editable — the caret flows through it
       var host = el.parentElement && el.parentElement.closest('[contenteditable="true"]');
       if (host) continue;
@@ -230,6 +233,16 @@
     for (i = 0; i < cal.length; i++) cal[i].innerHTML = "";
     var calExtra = clone.querySelectorAll(".calendly-overlay, .calendly-badge-widget, .calendly-popup-content");
     for (i = 0; i < calExtra.length; i++) calExtra[i].remove();
+
+    // The research-stats section fills itself in from js/proofPoints.js at
+    // every page load — save the placeholder empty so each number keeps
+    // living in exactly one place.
+    var proof = clone.querySelectorAll("[data-proof-points]");
+    for (i = 0; i < proof.length; i++) {
+      proof[i].innerHTML = "";
+      proof[i].removeAttribute("class");
+      proof[i].removeAttribute("aria-labelledby");
+    }
 
     return "<!DOCTYPE html>\n" + clone.outerHTML;
   }

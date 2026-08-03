@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programs &amp; Packages — Moore Tutoring Solutions</title>
-  <meta name="description" content="ACT prep and high school math programs from Moore Tutoring Solutions — from a low-cost group Minimum Package to premium full-semester one-on-one coaching. Outcome-based, not hourly.">
+  <meta name="description" content="ACT prep and high school math programs from Moore Tutoring Solutions — from a low-cost group Minimum Package to a premium 12-week program with twice-weekly one-on-one coaching. Outcome-based, not hourly.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -76,6 +76,12 @@
       </div>
     </section>
 
+    <!-- ============ PROOF POINTS (research-backed) ============
+         This section fills itself in automatically from js/proofPoints.js —
+         every number, wording, and source link lives in that one file.
+         EDIT: js/proofPoints.js (and re-verify the figures every year). -->
+    <section data-proof-points></section>
+
     <!-- ============ PACKAGE TIERS ============ -->
     <section class="section panel-dark">
       <div class="wrap">
@@ -85,8 +91,11 @@
 
         <!-- ==============================================================
              EDIT PRICES HERE.
-             Each price is a placeholder range — change the text inside
-             <span class="tier__price"> to your real numbers whenever ready.
+             Every number below is a placeholder. Each package shows a
+             per-month figure up top; the Score Builder and Premium Package
+             cards also show the full-block, paid-up-front total in small
+             print. Change the text inside each <p class="tier__price">
+             to your real numbers whenever ready.
 
              PAYMENT BUTTONS: each "Purchase This Package" button below has
              href="#" as a placeholder. Create a Payment Link for each
@@ -121,7 +130,7 @@
             <span class="tier__flag">Most families choose this</span>
             <h3 class="tier__name">The Score Builder</h3>
             <p class="tier__tag">A focused 3-month campaign toward one target test date.</p>
-            <p class="tier__price">$1,500–$2,500<small>one program fee · ~3 months · payment plans available</small></p>
+            <p class="tier__price">$500–$835<small>per month · 12-week program</small><small>Full 12-week block paid up front: $1,500–$2,500 (placeholder — final pricing coming soon)</small></p>
             <ul class="tier__list">
               <li>Everything in the Minimum Package</li>
               <li>Weekly one-on-one sessions with a tutor Jon hand-picks, on a plan he designs</li>
@@ -135,19 +144,17 @@
             <a class="btn btn--primary" href="#" data-stripe-payment target="_blank" rel="noopener">Purchase This Package</a>
           </article>
 
-          <!-- TIER 3: The Full Semester (premium) -->
+          <!-- TIER 3: The Premium Package (12 weeks, twice-weekly 1-on-1) -->
           <article class="tier reveal">
             <span class="tier__flag tier__flag--muted">Premium</span>
-            <h3 class="tier__name">The Full Semester</h3>
-            <p class="tier__tag">Our most complete program — a full semester of coverage across the ACT and coursework.</p>
-            <p class="tier__price">$3,500–$5,500<small>one program fee · 4–5 months · payment plans available</small></p>
+            <h3 class="tier__name">The Premium Package</h3>
+            <p class="tier__tag">Our most complete program — twice the one-on-one coaching over the same 12 weeks.</p>
+            <p class="tier__price">$1,165–$1,835<small>per month · 12-week program</small><small>Full 12-week block paid up front: $3,500–$5,500 (placeholder — final pricing coming soon)</small></p>
             <ul class="tier__list">
               <li>Everything in the Score Builder</li>
-              <li>Two one-on-one sessions per week</li>
-              <li>Coverage across multiple ACT test dates</li>
-              <li>Full math course support all semester long</li>
-              <li>Priority scheduling and direct text-line support</li>
-              <li>College-list score strategy session with our founder</li>
+              <li>Two one-on-one sessions per week instead of one</li>
+              <li>Priority scheduling</li>
+              <li>Emergency help sessions when available</li>
             </ul>
             <a class="btn btn--primary" href="https://calendly.com/jonjay-mooretutoringsolutions/30min" data-calendly target="_blank" rel="noopener">Book a Consultation</a>
             <!-- EDIT: replace # with this package's Stripe Payment Link -->
@@ -246,6 +253,8 @@
   </footer>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="js/proofPoints.js"></script>
+  <script src="js/proofSection.js"></script>
   <script src="js/main.js"></script>
   <script src="js/editor.js"></script>
 </body>

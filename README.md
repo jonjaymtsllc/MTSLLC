@@ -17,6 +17,8 @@ every edit is "open a file in Notepad (or any text editor), find the text, chang
 | `apply.html` | Tutor application page (wire your Google Form here) |
 | `css/styles.css` | All colors, fonts, and layout |
 | `js/main.js` | Menu, animations, form and booking-button behavior |
+| `js/proofPoints.js` | The research stats ("What an ACT score is actually worth") shown on Home and Programs — every number and source link lives here |
+| `js/proofSection.js` | Draws that stats section onto the page. Nothing to edit in here |
 | `js/editor.js` | The click-and-type editing mode |
 | `Edit Website.bat` | Double-click this to edit the site and save changes straight into this folder |
 | `tools/` | The small helper that `Edit Website.bat` runs. Nothing to open in here |
@@ -109,7 +111,10 @@ comment starting with `<!-- EDIT:` right above it.
    find-and-replace `(859) 576-1816` (the visible text) and `+18595761816` (the
    tap-to-dial link) across all the `.html` files.
 2. **Prices** — in `programs.html`, look for the big comment `EDIT PRICES HERE`.
-   Change the ranges inside each `<span class="tier__price">` to your real numbers.
+   Each package shows a per-month figure up top, and the Score Builder /
+   Premium Package cards also show the full-block up-front total in small print. All
+   of them are placeholders — change the text inside each
+   `<p class="tier__price">` to your real numbers whenever ready.
 3. **Results & testimonials** — every sample stat, score story, and quote has a
    yellow "Sample" badge on the page. Replace the text with real results, then delete
    the matching `<span class="placeholder-badge">…</span>` line so the badge disappears.
@@ -117,6 +122,12 @@ comment starting with `<!-- EDIT:` right above it.
 4. **Team section** — in `about.html`, add your name/photo/bio and your tutors'.
 5. **Session format & policies** — a few FAQ answers (online vs. in person, missed
    sessions) have `EDIT` comments; make sure they match how you actually operate.
+6. **Research stats (re-check every year)** — the "What an ACT score is actually
+   worth" section on Home and Programs is built from `js/proofPoints.js`. WKU
+   republishes its scholarship chart every year, so before each academic year
+   re-verify every figure in that file against its source link and update the
+   `lastVerified` dates. The click-and-type editor deliberately skips this
+   section — those numbers are only ever edited in that one file.
 
 ## Booking (Calendly)
 
@@ -167,7 +178,7 @@ To make them live (no code, all in the Stripe dashboard):
    unlock once Stripe approves).
 2. In the dashboard, go to **Product catalog → Add product** and create one product
    per package: The Minimum Package (recurring, monthly), The Score Builder
-   (one-time), The Full Semester (one-time).
+   (one-time), The Premium Package (one-time).
 3. Go to **Payment Links → New** (or click "Create payment link" right on the
    product) and make one link per package. This is where you can also turn on
    **"Allow customers to pay in installments/subscriptions"** for the payment-plan
