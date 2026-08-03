@@ -1019,6 +1019,16 @@ ol {
   background: var(--cobalt-tint);
 }
 
+/* The open question lifts off the page and grows a cobalt spine */
+.faq-item[open] {
+  border-color: var(--cobalt);
+  box-shadow: var(--shadow-lift);
+}
+
+.faq-item[open] summary {
+  box-shadow: inset 4px 0 0 var(--cobalt);
+}
+
 .faq-item__body {
   padding: 0 1.4rem 1.3rem;
   color: var(--ink-soft);
@@ -1395,6 +1405,18 @@ ol {
   }
 }
 
+/* FAQ answers unfold downward out of their question */
+@keyframes faq-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @keyframes brand-draw {
   from {
     stroke-dashoffset: 130;
@@ -1447,22 +1469,30 @@ ol {
   animation: brand-draw 0.9s ease-out 0.1s both;
 }
 
-/* FAQ answers fade in as they open */
+/* FAQ answers unfold as they open */
 .faq-item[open] .faq-item__body {
-  animation: rise-in 0.35s ease;
+  animation: faq-unfold 0.35s ease;
 }
 
 /* Cards lift slightly under the cursor */
 .card,
 .tier,
-.quote-card {
-  transition: opacity 0.55s ease, transform 0.55s ease, translate 0.25s ease, box-shadow 0.25s ease;
+.quote-card,
+.faq-item {
+  transition: opacity 0.55s ease, transform 0.55s ease, translate 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .card:hover,
 .tier:hover,
 .quote-card:hover {
   translate: 0 -5px;
+  box-shadow: var(--shadow-lift);
+}
+
+/* FAQ rows sit closer together, so they lift a little less */
+.faq-item:hover {
+  translate: 0 -3px;
   box-shadow: var(--shadow-lift);
 }
 
@@ -1508,13 +1538,15 @@ ol {
 
   .card,
   .tier,
-  .quote-card {
+  .quote-card,
+  .faq-item {
     transition: none;
   }
 
   .card:hover,
   .tier:hover,
-  .quote-card:hover {
+  .quote-card:hover,
+  .faq-item:hover {
     translate: none;
   }
 }

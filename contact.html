@@ -102,11 +102,20 @@
         <div>
           <div class="form-card">
             <h2 style="font-size:1.4rem">Send us a message</h2>
-            <!-- Works automatically on Netlify; for Vercel, wire to Formspree —
-                 see the note in book.html and the README.md walkthrough. -->
-            <form data-mts-form name="contact" method="POST" action="#" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="contact">
-              <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
+            <!-- ==============================================================
+                 THIS FORM EMAILS YOU AUTOMATICALLY via formsubmit.co (free,
+                 no account needed) — the same way the booking form on
+                 book.html does. ONE-TIME SETUP: submit the form once
+                 yourself, then click the "Activate" button in the email
+                 FormSubmit sends to jonjay@mooretutoringsolutions.com.
+                 After that, every message arrives in your inbox instantly.
+                 ============================================================== -->
+            <form data-mts-email name="contact" method="POST" action="https://formsubmit.co/jonjay@mooretutoringsolutions.com">
+              <input type="hidden" name="_subject" value="New message from the website contact form">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://mooretutoringsolutions.com/contact.html">
+              <p style="display:none"><label>Don't fill this out: <input name="_honey"></label></p>
               <div class="form-grid">
                 <div class="form-field">
                   <label for="c-name">Your name <span class="req" aria-hidden="true">*</span></label>
@@ -143,7 +152,10 @@
               <p class="form-note">We'll only use this to reply to you. No spam, no sharing your info — ever.</p>
             </form>
             <div class="form-success" role="status">
-              <strong>Message received — thank you!</strong> We'll get back to you within one business day.
+              <strong>Message received — thank you!</strong> It's on its way to our founder's inbox, and we'll get back to you within one business day.
+            </div>
+            <div class="form-error" role="alert">
+              <strong>Hmm — that didn't go through.</strong> Please call <a href="tel:+18595761816">(859) 576-1816</a> or email <a href="mailto:jonjay@mooretutoringsolutions.com">jonjay@mooretutoringsolutions.com</a> and we'll take it from there.
             </div>
           </div>
         </div>

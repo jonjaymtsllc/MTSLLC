@@ -53,9 +53,9 @@ the newest entry should say **Ready**. If it says **Error**, click it to see why
 `www.mooretutoringsolutions.com`, and the DNS at Squarespace is set correctly.
 Nothing in this folder affects that.
 
-**Note on forms:** Vercel does not collect form submissions the way Netlify does.
-The booking form uses FormSubmit and the contact form needs Formspree — see
-"Wiring up the forms" below.
+**Note on forms:** Vercel does not collect form submissions on its own. Both the
+booking form and the contact form email you through FormSubmit instead — each
+needs a one-time activation click. See "Wiring up the contact form" below.
 
 ## Editing any text on the site (no code needed)
 
@@ -230,18 +230,29 @@ claim honest.
 
 ## Wiring up the contact form
 
-The message form on `contact.html` is ready but not connected to anything until you
-deploy:
+The message form on `contact.html` emails you through **FormSubmit** — the same
+free service the booking form on `book.html` uses. No account, no monthly fee,
+and it works on Vercel.
 
-- **On Netlify:** nothing to do. Submissions are collected automatically (enable email
-  notifications in Site → Forms → Notifications).
-- **On Vercel or anywhere else:** create a free account at https://formspree.io, create
-  a form, and copy the endpoint URL it gives you (looks like
-  `https://formspree.io/f/abcdwxyz`). In `contact.html`, find `action="#"` on the
-  `<form>` tag and replace `#` with that URL. Submissions then arrive at your email.
+**You must activate it once before it delivers anything.** FormSubmit activates
+per form, so doing the booking form does NOT cover the contact form:
 
-Until wired up, submitting the form shows a polite confirmation message so the site
-never looks broken — but it does NOT save or send anything.
+1. Open the live contact page: https://www.mooretutoringsolutions.com/contact.html
+2. Fill the form out yourself and submit it.
+3. FormSubmit emails jonjay@mooretutoringsolutions.com an **"Activate"** button.
+   Click it.
+4. Send one more test message to confirm it lands in your inbox.
+
+After that, every message arrives instantly, formatted as a table, with the
+sender's email set as reply-to so you can just hit Reply. The subject line is
+"New message from the website contact form."
+
+**Until you click Activate, messages are not delivered** — the sender still sees
+the friendly confirmation, so do step 3 before you send any traffic to the site.
+
+> Heads up: before 2026-08-02 this form was marked up for Netlify Forms, which
+> does nothing on Vercel. Messages sent in that window showed a success message
+> to the sender but were never delivered anywhere. That is fixed.
 
 ## Changing colors or fonts
 

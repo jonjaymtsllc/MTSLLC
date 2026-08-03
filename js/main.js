@@ -27,7 +27,7 @@
      sweep. Siblings inside a grid reveal one after another (staggered). */
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var revealEls = document.querySelectorAll(".reveal, .mark");
-  var STAGGER_PARENTS = ["card-grid", "tiers", "stats", "check-rows"];
+  var STAGGER_PARENTS = ["card-grid", "tiers", "stats", "check-rows", "faq-list"];
 
   function revealDelay(el) {
     var parent = el.parentElement;
@@ -137,11 +137,14 @@
     window.Calendly.initPopupWidget({ url: link.href });
   });
 
-  /* ----- "Have us call you" form (book.html) -----
-     Submits through formsubmit.co, which forwards every request straight to
-     jonjay@mooretutoringsolutions.com — no server needed, works on any host.
-     ONE-TIME SETUP: submit the form once yourself, then click the "Activate"
-     link in the email FormSubmit sends you. After that it's automatic.
+  /* ----- Email forms: "Have us call you" (book.html) and the contact form
+     (contact.html) -----
+     Both submit through formsubmit.co, which forwards every message straight
+     to jonjay@mooretutoringsolutions.com — no server needed, works on any
+     host including Vercel.
+     ONE-TIME SETUP PER FORM: submit each form once yourself, then click the
+     "Activate" link in the email FormSubmit sends you. After that it's
+     automatic. Until a form is activated, its messages are NOT delivered.
      If JavaScript is off, the form still posts to FormSubmit's own page. */
   var emailForms = document.querySelectorAll("form[data-mts-email]");
 
@@ -203,44 +206,6 @@
       e.preventDefault();
       window.alert("Online payment is being set up — book a free consultation and we'll get your student started.");
     }
-  });
-
-  /* ----- Forms -----
-     The contact form is marked up for Netlify Forms (data-netlify="true"), so
-     if you deploy on Netlify it collects submissions automatically — check the
-     "Forms" tab in your Netlify dashboard.
-
-     If you deploy on Vercel (or anywhere else), the easiest path is Formspree:
-       1. Create a free form at https://formspree.io
-       2. Copy your endpoint (looks like https://formspree.io/f/abcdwxyz)
-       3. In contact.html, replace action="#" with that URL
-          and delete the data-netlify attribute.
-     Until a real endpoint exists, submitting shows a friendly on-page
-     confirmation so the site never looks broken. */
-  var forms = document.querySelectorAll("form[data-mts-form]");
-
-  forms.forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      var action = form.getAttribute("action") || "#";
-      var isWired = action !== "#" && action !== "";
-      var onNetlify = /\.netlify\.app$|netlify/.test(window.location.hostname);
-
-      // If a real endpoint (or Netlify hosting) is set up, let it submit normally.
-      if (isWired || onNetlify) return;
-
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      var success = form.parentElement.querySelector(".form-success");
-      if (success) {
-        success.classList.add("is-visible");
-        success.setAttribute("tabindex", "-1");
-        success.focus();
-      }
-      form.reset();
-    });
   });
 
   /* ----- Footer year ----- */
