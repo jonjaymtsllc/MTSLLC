@@ -14,7 +14,7 @@ every edit is "open a file in Notepad (or any text editor), find the text, chang
 | `faq.html` | Frequently asked questions |
 | `book.html` | Book a Consultation (call-back form + Calendly calendar) |
 | `contact.html` | Contact info + message form |
-| `apply.html` | Tutor application page (wire your Google Form here) |
+| `apply.html` | Tutor application page (your Google Form is embedded here) |
 | `css/styles.css` | All colors, fonts, and layout |
 | `js/main.js` | Menu, animations, form and booking-button behavior |
 | `js/proofPoints.js` | The research stats ("What an ACT score is actually worth") shown on Home and Programs — every number and source link lives here |
@@ -225,23 +225,46 @@ files — this site doesn't need them, and anything in these files is public.
 `apply.html` is where tutoring contractors apply. It's linked from the footer of
 every page ("Apply to Tutor"). It lists your requirements — recent high school
 graduate, 33+ on ACT Math, set-your-own-hours, pay about double a typical college
-job — and ends with an application box.
+job — and ends with the application form itself.
 
-**Right now** the box shows "Our online application opens soon" with an email
-button that works immediately (applicants email jonjay@mooretutoringsolutions.com
-with the subject "Tutor application").
+**The application form is live.** Your Google Form "Moore Tutoring Solutions
+Tutor Application" (7 sections) is embedded directly in the page. Answers go to
+that form's **Responses** tab in Google Forms — nothing is stored on the website
+and nothing is emailed automatically. To get an email when someone applies, open
+the form → **Responses** → the three-dot menu → **Get email notifications for
+new responses**.
 
-**To wire up your Google Form later:**
-1. Build the form at https://forms.google.com (suggested questions: name, school
-   & year, ACT Math score + upload of score report, weekly availability, why
-   they'd be a great tutor).
-2. In Google Forms click **Send**, choose the **`< >` (Embed HTML)** tab, and
-   copy the `<iframe>` code.
-3. In `apply.html`, find the comment `APPLICATION FORM (Google Form goes here)`
-   and paste the iframe in place of the placeholder box, exactly as the comment
-   describes. Set the iframe's `width="100%"` and a height tall enough for the
-   whole form (try `height="1400"`).
+**To change the questions:** edit the form in Google Forms. The website picks up
+the change straight away — there is nothing to re-paste and nothing to push.
+
+> ### ⚠️ One setting you must check
+> The form's responders are currently set to **"Anyone in Moore Tutoring
+> Solutions"**, which means only someone with a `@mooretutoringsolutions.com`
+> Google account can fill it in. Applicants have personal Gmail accounts, so as
+> it stands **nobody outside your domain can apply.**
+>
+> To fix: open the form → the **Published** button (top right) → next to
+> *Responders*, click **Manage** → change to **Anyone** → **Save**.
+> Until that's done, the embedded form shows visitors a Google sign-in wall
+> instead of the questions.
+
+**To swap in a different form later:**
+1. In Google Forms click **Send**, choose the **`< >` (Embed HTML)** tab.
+2. Copy the address out of that iframe's `src="..."`. It looks like
+   `https://docs.google.com/forms/d/e/1FAIpQLS…/viewform?embedded=true`.
+   The `/edit` address in your browser bar is **not** the same thing and will
+   not work for visitors.
+3. In `apply.html`, find the comment `THE APPLICATION FORM`. That address goes
+   in **two** places, and missing the second one leaves a link quietly pointing
+   at your old form:
+   - the `src="..."` on the `<iframe>` — keep the `?embedded=true` on the end
+   - the "Open the application in a new tab" link just underneath it — the same
+     address, but leave the `?embedded=true` off
 4. Commit and push in GitHub Desktop.
+
+**If the form ever looks cut off**, raise the `height` under `.form-embed iframe`
+in `css/styles.css` — there are two values, one for phones and one for
+everything else.
 
 A note on the pay claim: the page says tutors earn **"about double what the
 typical college job pays."** We deliberately didn't cite LinkedIn — LinkedIn

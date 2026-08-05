@@ -193,6 +193,36 @@
     });
   }
 
+  /* ----- Embedded application form (apply.html) -----
+     The tutor application is a multi-page Google Form, and the frame holding
+     it is deliberately taller than the window so the form never grows its own
+     inner scrollbar. The catch: when someone clicks "Next", Google draws the
+     next page at the TOP of that frame — which by then can be most of a screen
+     above whatever they were reading. They're left looking at blank space and
+     reasonably conclude the form broke.
+
+     Google can't scroll our page from inside the frame, so we do it here:
+     every time the frame loads a new page of the form, bring the top of it
+     back into view. The frame's very first load is just the page arriving
+     normally, so that one is left alone. */
+  var applyFrame = document.querySelector(".form-embed iframe");
+  if (applyFrame) {
+    var frameHasLoadedOnce = false;
+    applyFrame.addEventListener("load", function () {
+      if (!frameHasLoadedOnce) {
+        frameHasLoadedOnce = true;
+        return;
+      }
+      var header = document.querySelector(".site-header");
+      var clearance = (header ? header.offsetHeight : 0) + 12;
+      var target = applyFrame.getBoundingClientRect().top + window.scrollY - clearance;
+      window.scrollTo({
+        top: Math.max(target, 0),
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
+    });
+  }
+
   /* ----- Calendly booking buttons -----
      Every "Book a Consultation" button is a normal link straight to the
      Calendly page, so it still works if scripts are blocked or slow. Once
