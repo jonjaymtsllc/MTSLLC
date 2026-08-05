@@ -224,7 +224,7 @@ files — this site doesn't need them, and anything in these files is public.
 
 `apply.html` is where tutoring contractors apply. It's linked from the footer of
 every page ("Apply to Tutor"). It lists your requirements — recent high school
-graduate, 32+ on ACT Math, set-your-own-hours, pay about double a typical college
+graduate, 33+ on ACT Math, set-your-own-hours, pay about double a typical college
 job — and ends with an application box.
 
 **Right now** the box shows "Our online application opens soon" with an email

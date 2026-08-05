@@ -59,59 +59,25 @@
             <h2 style="font-size:1.4rem">Have us call you</h2>
             <p style="margin-bottom:1.3rem">Tell us about your student and this lands straight in our founder's inbox — we call you back, usually the same day.</p>
             <!-- ==============================================================
-                 THIS FORM EMAILS YOU AUTOMATICALLY via formsubmit.co (free,
-                 no account needed). ONE-TIME SETUP: submit the form once
-                 yourself, then click the "Activate" button in the email
-                 FormSubmit sends to jonjay@mooretutoringsolutions.com.
-                 After that, every request arrives in your inbox instantly.
+                 HUBSPOT LEAD CAPTURE FORM
+                 Submissions create a contact record in HubSpot automatically
+                 (portal 246945114) and HubSpot emails you on every submission.
+                 Fields: parent name, email, phone, student name, grade,
+                 subject, and the "what's going on" message.
+
+                 To change fields or wording, edit the form inside HubSpot —
+                 do NOT edit it here. This snippet just renders it.
+                 HubSpot > Marketing > Forms > "MTS Lead Capture - Student Info"
+
+                 The previous FormSubmit version is saved in _backups/ if you
+                 ever want it back.
                  ============================================================== -->
-            <form data-mts-email name="consultation" method="POST" action="https://formsubmit.co/jonjay@mooretutoringsolutions.com">
-              <input type="hidden" name="_subject" value="New consultation request — call this parent">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://mooretutoringsolutions.com/book.html">
-              <p style="display:none"><label>Don't fill this out: <input name="_honey"></label></p>
-              <div class="form-grid">
-                <div class="form-field">
-                  <label for="b-name">Your name <span class="req" aria-hidden="true">*</span></label>
-                  <input id="b-name" name="name" type="text" autocomplete="name" required>
-                </div>
-                <div class="form-field">
-                  <label for="b-grade">Student's grade <span class="req" aria-hidden="true">*</span></label>
-                  <select id="b-grade" name="student-grade" required>
-                    <option value="" selected disabled>Select a grade</option>
-                    <option>8th grade</option>
-                    <option>9th grade (Freshman)</option>
-                    <option>10th grade (Sophomore)</option>
-                    <option>11th grade (Junior)</option>
-                    <option>12th grade (Senior)</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div class="form-field">
-                  <label for="b-phone">Phone <span class="req" aria-hidden="true">*</span></label>
-                  <input id="b-phone" name="phone" type="tel" autocomplete="tel" required>
-                </div>
-                <div class="form-field">
-                  <label for="b-email">Email <span class="req" aria-hidden="true">*</span></label>
-                  <input id="b-email" name="email" type="email" autocomplete="email" required>
-                </div>
-                <div class="form-field form-field--full">
-                  <label for="b-message">What's going on with school or the ACT? <span class="req" aria-hidden="true">*</span></label>
-                  <textarea id="b-message" name="message" required placeholder="Example: My daughter is a junior scoring around 23 on ACT practice tests and wants a 28 by spring. Math is the weak section."></textarea>
-                </div>
-                <div class="form-field form-field--full">
-                  <button class="btn btn--primary btn--lg" type="submit" style="width:100%">Request My Free Consultation</button>
-                </div>
-              </div>
-              <p class="form-note">We'll only use this to schedule and prepare for your call. No spam, no sharing your info — ever.</p>
-            </form>
-            <div class="form-success" role="status">
-              <strong>Request received — thank you!</strong> Your details are on their way to our founder, and we'll call you soon. Want to lock in a time yourself? Grab a slot on the calendar.
-            </div>
-            <div class="form-error" role="alert">
-              <strong>Hmm — that didn't go through.</strong> Please call <a href="tel:+18595761816">(859) 576-1816</a> or email <a href="mailto:jonjay@mooretutoringsolutions.com">jonjay@mooretutoringsolutions.com</a> and we'll take it from there.
-            </div>
+            <script src="https://js-na2.hsforms.net/forms/embed/246945114.js" defer></script>
+            <div class="hs-form-frame"
+                 data-region="na2"
+                 data-form-id="dd3412a9-8070-4d83-a8b5-effba737fd49"
+                 data-portal-id="246945114"></div>
+            <p class="form-note">We'll only use this to schedule and prepare for your call. No spam, no sharing your info — ever.</p>
           </div>
         </div>
 

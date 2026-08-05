@@ -36,7 +36,11 @@
 
   function buildCard(point) {
     var card = el("article", "card proof-card reveal");
-    card.appendChild(el("p", "proof-card__num", point.headline));
+    /* data-countup makes the big number animate up from zero when it scrolls
+       into view — handled by js/main.js. */
+    var headline = el("p", "proof-card__num", point.headline);
+    headline.setAttribute("data-countup", "");
+    card.appendChild(headline);
     card.appendChild(el("p", "proof-card__detail", point.detail));
 
     var source = el("p", "proof-card__source");

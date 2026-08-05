@@ -73,17 +73,82 @@
     });
   }
 
-  /* ----- Count-up stat numbers (results page) -----
-     Big stats like "+4.2" and "92%" count up from zero when they scroll
-     into view, then land exactly on the original text. */
+  /* ----- Count-up numbers -----
+     Every headline number on the site counts up from zero when it scrolls
+     into view, then lands exactly on the text that's written in the HTML.
+
+     TO MAKE A NUMBER COUNT UP: add  data-countup  to the element holding it.
+     That's the whole job — nothing here needs changing.
+
+     It handles anything you write: "29", "+6", "$2,749", "ACT 22 → 28",
+     "89% vs 71%". Words, symbols, and spacing stay exactly where they are and
+     only the digits move, so every number in the text counts at once. Text
+     with no digits in it ("A−", "from C+") is simply left alone. */
+
+  /* 1234567.5 -> "1,234,567.5" (commas in the whole-number part only) */
+  function groupDigits(str) {
+    var parts = str.split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+  }
+
+  /* Split "ACT 22 → 28" into ["ACT ", {number}, " → ", {number}] so the
+     words stay put while the numbers animate. Returns null if there is
+     nothing to count. */
+  function parseCountUp(text) {
+    var pattern = /\d[\d,]*(?:\.\d+)?/g;
+    var pieces = [];
+    var cursor = 0;
+    var match;
+
+    while ((match = pattern.exec(text)) !== null) {
+      if (match.index > cursor) pieces.push(text.slice(cursor, match.index));
+      var raw = match[0];
+      var plain = raw.replace(/,/g, "");
+      pieces.push({
+        raw: raw,
+        value: parseFloat(plain),
+        decimals: (plain.split(".")[1] || "").length,
+        commas: raw.indexOf(",") !== -1
+      });
+      cursor = match.index + raw.length;
+    }
+
+    if (!pieces.length) return null;
+    if (cursor < text.length) pieces.push(text.slice(cursor));
+    return pieces;
+  }
+
+  function renderCountUp(pieces, progress) {
+    var out = "";
+    for (var i = 0; i < pieces.length; i++) {
+      var piece = pieces[i];
+      if (typeof piece === "string") {
+        out += piece;
+      } else if (progress >= 1) {
+        out += piece.raw;
+      } else {
+        var shown = (piece.value * progress).toFixed(piece.decimals);
+        out += piece.commas ? groupDigits(shown) : shown;
+      }
+    }
+    return out;
+  }
+
   function countUp(el) {
     var original = el.textContent;
-    var parts = original.match(/^([^0-9]*)([0-9][0-9.,]*)(.*)$/);
-    if (!parts) return;
-    var prefix = parts[1];
-    var target = parseFloat(parts[2].replace(/,/g, ""));
-    var suffix = parts[3];
-    var decimals = (parts[2].split(".")[1] || "").length;
+    var pieces = parseCountUp(original);
+    if (!pieces) return;
+
+    /* Hold the box at its finished size so the words around it don't shuffle
+       while the digits are still growing. A plain inline element ignores
+       min-width, so it's switched to inline-block just for the animation —
+       which is why inline count-ups should wrap the number and nothing else. */
+    var inline = window.getComputedStyle(el).display === "inline";
+    if (inline) el.style.display = "inline-block";
+    var width = el.getBoundingClientRect().width;
+    if (width) el.style.minWidth = width + "px";
+
     var duration = 1100;
     var startTime = null;
 
@@ -91,31 +156,40 @@
       if (startTime === null) startTime = now;
       var progress = Math.min((now - startTime) / duration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
       if (progress < 1) {
+        el.textContent = renderCountUp(pieces, eased);
         window.requestAnimationFrame(tick);
       } else {
-        el.textContent = original;
+        el.textContent = original; // land exactly on the real text
+        el.style.minWidth = "";
+        if (inline) el.style.display = "";
       }
     }
     window.requestAnimationFrame(tick);
   }
 
-  var statNums = document.querySelectorAll(".stat__num");
-  if (!reduceMotion && "IntersectionObserver" in window && statNums.length) {
-    var statObserver = new IntersectionObserver(
+  /* The visual editor saves whatever is on the page at that moment, so the
+     animation stays off while editing — otherwise a half-counted number
+     ("$1,203") could get written into the .html file. */
+  var editing =
+    new URLSearchParams(window.location.search).has("edit") ||
+    window.location.hash === "#edit";
+
+  var countEls = document.querySelectorAll("[data-countup], .stat__num");
+  if (!reduceMotion && !editing && "IntersectionObserver" in window && countEls.length) {
+    var countObserver = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            statObserver.unobserve(entry.target);
+            countObserver.unobserve(entry.target);
             countUp(entry.target);
           }
         });
       },
       { threshold: 0.4 }
     );
-    statNums.forEach(function (el) {
-      statObserver.observe(el);
+    countEls.forEach(function (el) {
+      countObserver.observe(el);
     });
   }
 
