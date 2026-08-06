@@ -191,11 +191,20 @@
 
                IF THE FORM LOOKS CUT OFF: raise the height in css/styles.css
                under ".form-embed iframe".
+
+               The width="640" height="1320" below are a safety net, not the
+               real size. Normally css/styles.css stretches the form to the
+               full width of this card. But if a visitor's browser is still
+               holding an old copy of the stylesheet, these two numbers are all
+               it has to go on — without them the form would collapse to a
+               300x150 postage stamp. Leave them roughly in step with the CSS.
                ============================================================== -->
           <div class="form-embed">
             <iframe
               src="https://docs.google.com/forms/d/e/1FAIpQLSeEfBtWLF4vUnP0-e75cGUxiWiYaPx958_AkY_Eoe1b9sVSGA/viewform?embedded=true"
               title="Moore Tutoring Solutions tutor application form"
+              width="640"
+              height="1320"
               loading="lazy">Loading the application form…</iframe>
           </div>
 
