@@ -175,16 +175,35 @@ Five buttons, five links:
 
 | Card | Button | Charge | Stripe product |
 |---|---|---|---|
-| Minimum | Purchase This Package | $149 every 4 weeks | The Minimum Package |
-| Score Builder | Pay Monthly | $999 every 4 weeks | The Score Builder (Monthly) |
-| Score Builder | Pay Up Front — Save $248 | $2,749 once | The Score Builder (Up Front) |
-| Premium | Pay Monthly | $1,749 every 4 weeks | The Premium Package (Monthly) |
-| Premium | Pay Up Front — Save $498 | $4,749 once | The Premium Package (Up Front) |
+| Minimum | Purchase This Package | $49 every 4 weeks | The Minimum Package |
+| Score Builder | Pay Monthly | $499 every 4 weeks | The Score Builder (Monthly) |
+| Score Builder | Pay Up Front — Save $98 | $1,399 once | The Score Builder (Up Front) |
+| Premium | Pay Monthly | $899 every 4 weeks | The Premium Package (Monthly) |
+| Premium | Pay Up Front — Save $198 | $2,499 once | The Premium Package (Up Front) |
+
+Prices last verified against the live Stripe dashboard on **2026-08-10**.
 
 The buttons deliberately don't repeat the price — it's already in the card above
 them. The "Save" figures are the difference between paying up front and making
-three monthly payments (3 × $999 − $2,749 = $248; 3 × $1,749 − $4,749 = $498).
+three payments (3 × $499 − $1,399 = $98; 3 × $899 − $2,499 = $198).
 **If you change any price, recheck that math.**
+
+### Changing a price without breaking the links
+
+Stripe will not let you edit the amount on a price that has been used, and the
+payment link URLs on `programs.html` are hardcoded. The safe procedure that
+keeps the same `buy.stripe.com` URLs is:
+
+1. Payment Links → open the link → **Edit**
+2. On the product card, **… → Edit product → Add another price** (set the amount
+   and, for recurring, Billing period → Custom → every 4 weeks), then
+   **… → Set as default price → Update product**
+3. Back on the link, **… → Remove product**, then re-add the same product and
+   pick the *new* price → **Update link**
+4. Product catalog → the product → **… → Archive price** on the old amount
+
+The URL does not change, so `programs.html` needs no edit — only the price
+numbers and the comments above each button.
 
 Each checkout collects the payer's email, phone, and **the student's full name**,
 then shows a thank-you message saying you'll email within one business day.
