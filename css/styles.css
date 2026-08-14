@@ -917,6 +917,16 @@ ol {
   flex: 1;
 }
 
+/* Longer reviews run to more than one paragraph. Keep them spaced from each
+   other but flush with the name underneath. */
+.quote-card blockquote p {
+  margin: 0 0 0.9em;
+}
+
+.quote-card blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 .quote-card blockquote::before {
   content: "“";
   display: block;

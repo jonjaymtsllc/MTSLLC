@@ -110,16 +110,17 @@ comment starting with `<!-- EDIT:` right above it.
 1. **Phone number** — already set to (859) 576-1816 everywhere. If it ever changes,
    find-and-replace `(859) 576-1816` (the visible text) and `+18595761816` (the
    tap-to-dial link) across all the `.html` files.
-2. **Prices** — in `programs.html`, look for the big comment `EDIT PRICES HERE`.
-   Each package shows a per-month figure up top, and the Score Builder /
-   Premium Package cards also show the full-block up-front total in small print. All
-   of them are placeholders — change the text inside each
-   `<p class="tier__price">` to your real numbers whenever ready.
-3. **Results & testimonials** — every sample stat, score story, and quote has a
-   yellow "Sample" badge on the page. Replace the text with real results, then delete
-   the matching `<span class="placeholder-badge">…</span>` line so the badge disappears.
-   They're on `results.html`, `index.html` (two quotes), and `about.html` (team cards).
-4. **Team section** — in `about.html`, add your name/photo/bio and your tutors'.
+2. **Prices** — done. `programs.html` carries your real prices ($99 / $999 /
+   $1,749 per month, with up-front options), and they match Stripe. If you ever
+   change one, change it in **both** places — see "Getting paid (Stripe)" below.
+3. **Results & testimonials** — done. `results.html` carries all four real
+   reviews (V.M., D.J, C.D., X.L.), `index.html` shows two of them, and the
+   hero score report on `index.html` is built from real numbers those students
+   wrote down. There are no "Sample" badges left anywhere on the site. **Only
+   add a new quote when you have a real one** — an invented testimonial is the
+   one thing that would cost you every real one.
+4. **Team section** — in `about.html`, add photos and your tutors' names when
+   you're ready. The three role cards are real as written.
 5. **Session format & policies** — a few FAQ answers (online vs. in person, missed
    sessions) have `EDIT` comments; make sure they match how you actually operate.
 6. **Research stats (re-check every year)** — the "What an ACT score is actually
@@ -175,24 +176,57 @@ Five buttons, five links:
 
 | Card | Button | Charge | Stripe product |
 |---|---|---|---|
-| Minimum | Purchase This Package | $49 every 4 weeks | The Minimum Package |
-| Score Builder | Pay Monthly | $499 every 4 weeks | The Score Builder (Monthly) |
-| Score Builder | Pay Up Front — Save $98 | $1,399 once | The Score Builder (Up Front) |
-| Premium | Pay Monthly | $899 every 4 weeks | The Premium Package (Monthly) |
-| Premium | Pay Up Front — Save $198 | $2,499 once | The Premium Package (Up Front) |
+| Minimum | Purchase This Package | $99 every 4 weeks | The Minimum Package |
+| Score Builder | Pay Monthly | $999 every 4 weeks | The Score Builder (Monthly) |
+| Score Builder | Pay Up Front — Save $248 | $2,749 once | The Score Builder (Up Front) |
+| Premium | Pay Monthly | $1,749 every 4 weeks | The Premium Package (Monthly) |
+| Premium | Pay Up Front — Save $248 | $4,999 once | The Premium Package (Up Front) — **new link, see warning below** |
 
-Prices last verified against the live Stripe dashboard on **2026-08-10**.
+Prices last verified against the live Stripe dashboard on **2026-08-14**.
+
+> ### ⚠️ One thing left to do in Stripe
+> The **Premium — Pay Up Front** button points at a **brand-new payment link**
+> (`…eXX1VK05`). The old one (`…mI5nn1VK04`) could not be repriced: it had been
+> created with the Payment Links API, and Stripe's dashboard refuses to edit
+> those — the Edit menu item is greyed out with "you can only edit it using the
+> API." So it was rebuilt as a new link at $4,999 instead, and `programs.html`
+> now points at the new address. The other four links were repriced in place
+> and kept their original URLs.
+>
+> **The old link is still live and still charges $2,499.** Nothing on the site
+> points at it any more, but anyone holding the old address could still pay the
+> old price. To close it off:
+> 1. Payment Links → **The Premium Package (Up Front)** — the one showing
+>    **$2,499.00** → **… → Deactivate**
+> 2. Product catalog → The Premium Package (Up Front) → **… → Archive price**
+>    on the **$2,499.00** row (leave the $4,999.00 Default alone)
+>
+> Do step 1 only after you've clicked the new Pay Up Front button on the live
+> site once and seen $4,999.00 at checkout.
 
 The buttons deliberately don't repeat the price — it's already in the card above
 them. The "Save" figures are the difference between paying up front and making
-three payments (3 × $499 − $1,399 = $98; 3 × $899 − $2,499 = $198).
+three payments (3 × $999 − $2,749 = $248; 3 × $1,749 − $4,999 = $248).
 **If you change any price, recheck that math.**
+
+Older customers who signed up at the previous prices ($49 / $499 / $899) keep
+paying those rates until their subscription ends — raising the price only
+affects new signups. That's Stripe working as intended, not a mistake.
 
 ### Changing a price without breaking the links
 
 Stripe will not let you edit the amount on a price that has been used, and the
 payment link URLs on `programs.html` are hardcoded. The safe procedure that
 keeps the same `buy.stripe.com` URLs is:
+
+> **First check whether the link is even editable.** Open the link → **…** — if
+> **Edit** is greyed out, that link was created with the Payment Links API and
+> the dashboard cannot change it. That happened to the Premium up-front link in
+> August 2026. When it does, the only dashboard-only fix is to rebuild the link
+> (**… → Duplicate**, remove the "(Copy)" product, add the *real* product at its
+> new price, **Create link**), paste the new address into `programs.html`, and
+> deactivate the old link. The address changes, so the file edit is required.
+
 
 1. Payment Links → open the link → **Edit**
 2. On the product card, **… → Edit product → Add another price** (set the amount
@@ -218,11 +252,13 @@ Put a reminder on your calendar when someone signs up. If you forget, they get
 billed a fourth time and you'll owe a refund. (The Minimum Package is meant to run
 continuously, so it's fine to leave alone until the family cancels.)
 
-**2. "Per month" actually means every 4 weeks.** That's how the prices were set up
-in Stripe. Four weeks isn't a calendar month, so a year-long Minimum Package
-subscriber pays 13 times, not 12. For the 12-week programs it works out perfectly
-(3 payments = 12 weeks). If you'd rather bill on true calendar months, change the
-price in Stripe and tell me — the site wording may need to change with it.
+**2. "Per month" means every 4 weeks, on purpose.** That's your definition of a
+month and it's how every recurring price in Stripe is set. Two things follow
+from it. Four weeks isn't a calendar month, so a year-long Minimum Package
+subscriber pays 13 times, not 12 — worth saying out loud if a parent ever asks.
+And for the 12-week programs it lands perfectly: 3 payments = 12 weeks, and the
+four-weeks-free promise is exactly one billing cycle, so honoring it means
+skipping one charge rather than doing any math.
 
 ### Changing a price
 
@@ -238,6 +274,39 @@ payment plans per-invoice. No website changes needed.
 
 Never paste Stripe **API keys** (they start with `sk_` or `pk_`) into the website
 files — this site doesn't need them, and anything in these files is public.
+
+## The four-weeks-free promise
+
+This is the site's main risk-removal offer, and it is a **real financial
+commitment**, not marketing copy:
+
+> If a student doesn't improve on two of their first three practice ACTs,
+> their next four weeks are free.
+
+Four weeks is exactly one billing cycle, so honoring it means skipping one
+charge — in Stripe, **Subscriptions → find the customer → Actions → Pause
+payment collection** for one cycle (or apply a 100% coupon for one cycle),
+then resume. For someone who paid up front, refund one cycle's worth.
+
+The promise is written into **six** places, and they must all say the same
+thing or the one that says less becomes the one a parent holds you to:
+
+| Page | Where |
+|---|---|
+| `index.html` | second green line under the hero buttons, the "Accountability to a number" card, and the green callout above the closing CTA |
+| `programs.html` | the intro line above the three package cards, the "Our commitment" row, and the green callout |
+| `results.html` | the green callout |
+| `faq.html` | the "Do you guarantee a specific score increase?" answer and the "How exactly does the four-weeks-free promise work?" answer |
+| `about.html` | the "Programs, not hours" card |
+| `book.html` | the second line under the page headline |
+
+Each spot has an `EDIT:` comment above it in the file pointing at the others.
+**If you reword the promise, reword all six** — then reread them together to
+make sure you didn't accidentally promise something bigger in one of them.
+
+Two things keep it honest and cheap to honor: every practice ACT is timed under
+the same conditions, so "improvement" is a comparison of like with like, and
+you see the score reports first, so you tell the family before they have to ask.
 
 ## The tutor Apply page
 
