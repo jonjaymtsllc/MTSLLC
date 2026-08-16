@@ -114,9 +114,10 @@ comment starting with `<!-- EDIT:` right above it.
    $1,749 per month, with up-front options), and they match Stripe. If you ever
    change one, change it in **both** places — see "Getting paid (Stripe)" below.
 3. **Results & testimonials** — done. `results.html` carries all five real
-   reviews (X.L., V.M., M.B., C.D., D.J), `index.html` shows two of them, and
-   the hero score report on `index.html` is built from real numbers those
-   students wrote down. There are no "Sample" badges left anywhere on the site.
+   reviews in this order: **X.L., M.B.**, V.M., C.D., D.J. X.L. and M.B. lead
+   deliberately — they're the two headline results, and they're also the two
+   quoted on the home page and the top two rows of its hero score report. If
+   you add a stronger review later, put it in those spots and push these down. There are no "Sample" badges left anywhere on the site.
    **Only add a new quote when you have a real one** — an invented testimonial
    is the one thing that would cost you every real one. To add one: copy a
    whole `<figure class="quote-card reveal">…</figure>` block in
