@@ -113,12 +113,15 @@ comment starting with `<!-- EDIT:` right above it.
 2. **Prices** — done. `programs.html` carries your real prices ($99 / $999 /
    $1,749 per month, with up-front options), and they match Stripe. If you ever
    change one, change it in **both** places — see "Getting paid (Stripe)" below.
-3. **Results & testimonials** — done. `results.html` carries all four real
-   reviews (V.M., D.J, C.D., X.L.), `index.html` shows two of them, and the
-   hero score report on `index.html` is built from real numbers those students
-   wrote down. There are no "Sample" badges left anywhere on the site. **Only
-   add a new quote when you have a real one** — an invented testimonial is the
-   one thing that would cost you every real one.
+3. **Results & testimonials** — done. `results.html` carries all five real
+   reviews (X.L., V.M., M.B., C.D., D.J), `index.html` shows two of them, and
+   the hero score report on `index.html` is built from real numbers those
+   students wrote down. There are no "Sample" badges left anywhere on the site.
+   **Only add a new quote when you have a real one** — an invented testimonial
+   is the one thing that would cost you every real one. To add one: copy a
+   whole `<figure class="quote-card reveal">…</figure>` block in
+   `results.html`, swap the quote, the initials, and the green chip. The chip
+   must be a fact taken from that same quote, nothing extra.
 4. **Team section** — in `about.html`, add photos and your tutors' names when
    you're ready. The three role cards are real as written.
 5. **Session format & policies** — a few FAQ answers (online vs. in person, missed
