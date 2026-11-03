@@ -42,12 +42,12 @@ window.MTS_PROOF_POINTS = [
     detail:
       "Western Kentucky University pays a 3.80 to 4.00 GPA student $3,500 per year with no ACT score, and $7,500 per year with a 30 or higher. Same transcript. A $16,000 difference over four years, decided by one test.",
     sourceName:
-      "WKU Office of Student Financial Assistance, 2026 to 2027 Beginning Freshmen Academic Scholarships",
+      "WKU Office of Student Financial Assistance, Beginning Freshmen Academic Scholarships",
     sourceUrl:
-      "https://www.wku.edu/financialaid/scholarships/2627awards/2627merit.php",
-    lastVerified: "2026-08-02",
+      "https://www.wku.edu/financialaid/scholarships/awards/academic.php",
+    lastVerified: "2026-11-03",
     verifyNote:
-      "Published award chart. Republished annually, re-verify every year. WKU does not accept superscores for this award."
+      "Published award chart (evergreen URL; old 2627awards page 404s). Republished annually, re-verify every year. WKU does not accept superscores for this award."
   },
   {
     id: "earnings",
